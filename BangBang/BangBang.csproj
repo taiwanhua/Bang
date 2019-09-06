@@ -172,12 +172,74 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909060557359_InitialCreate.cs" />
+    <Compile Include="Migrations\201909060557359_InitialCreate.Designer.cs">
+      <DependentUpon>201909060557359_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909060635436_inital.cs" />
+    <Compile Include="Migrations\201909060635436_inital.Designer.cs">
+      <DependentUpon>201909060635436_inital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909060726490_two.cs" />
+    <Compile Include="Migrations\201909060726490_two.Designer.cs">
+      <DependentUpon>201909060726490_two.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909061300281_3.cs" />
+    <Compile Include="Migrations\201909061300281_3.Designer.cs">
+      <DependentUpon>201909061300281_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909061327288_4.cs" />
+    <Compile Include="Migrations\201909061327288_4.Designer.cs">
+      <DependentUpon>201909061327288_4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909061355031_5.cs" />
+    <Compile Include="Migrations\201909061355031_5.Designer.cs">
+      <DependentUpon>201909061355031_5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909061455562_6.cs" />
+    <Compile Include="Migrations\201909061455562_6.Designer.cs">
+      <DependentUpon>201909061455562_6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909061527316_7.cs" />
+    <Compile Include="Migrations\201909061527316_7.Designer.cs">
+      <DependentUpon>201909061527316_7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909061536093_8.cs" />
+    <Compile Include="Migrations\201909061536093_8.Designer.cs">
+      <DependentUpon>201909061536093_8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909061610217_9.cs" />
+    <Compile Include="Migrations\201909061610217_9.Designer.cs">
+      <DependentUpon>201909061610217_9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\.cs" />
+    <Compile Include="Migrations\.Designer.cs">
+      <DependentUpon>.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909061638072_11.cs" />
+    <Compile Include="Migrations\201909061638072_11.Designer.cs">
+      <DependentUpon>201909061638072_11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909061724396_12.cs" />
+    <Compile Include="Migrations\201909061724396_12.Designer.cs">
+      <DependentUpon>201909061724396_12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DatabaseInitalizer.cs" />
+    <Compile Include="Models\DataDbContext.cs" />
+    <Compile Include="Models\GameRecord.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\PlayerExperience.cs" />
+    <Compile Include="Models\Repositories\PlayerRepository.cs" />
+    <Compile Include="Models\Repositories\Repository.cs" />
+    <Compile Include="Models\Walletrecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -275,6 +337,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Players\Index.cshtml" />
+    <Content Include="Views\Players\Create.cshtml" />
+    <Content Include="Views\Players\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -289,6 +354,47 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201909060557359_InitialCreate.resx">
+      <DependentUpon>201909060557359_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909060635436_inital.resx">
+      <DependentUpon>201909060635436_inital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909060726490_two.resx">
+      <DependentUpon>201909060726490_two.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909061300281_3.resx">
+      <DependentUpon>201909061300281_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909061327288_4.resx">
+      <DependentUpon>201909061327288_4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909061355031_5.resx">
+      <DependentUpon>201909061355031_5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909061455562_6.resx">
+      <DependentUpon>201909061455562_6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909061527316_7.resx">
+      <DependentUpon>201909061527316_7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909061536093_8.resx">
+      <DependentUpon>201909061536093_8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909061610217_9.resx">
+      <DependentUpon>201909061610217_9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\.resx">
+      <DependentUpon>.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909061638072_11.resx">
+      <DependentUpon>201909061638072_11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909061724396_12.resx">
+      <DependentUpon>201909061724396_12.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
