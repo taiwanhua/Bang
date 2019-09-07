@@ -114,3 +114,4 @@ C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.csproj.CopyComp
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.dll
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.pdb
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.Migrations._10.resources
+C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.csprojAssemblyReference.cache
