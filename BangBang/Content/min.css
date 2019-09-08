@@ -1,5 +1,10 @@
 ﻿body {
     background-color: coral;
+    /*--openrankimgurl: url(./img/suit2/cardback.png);*/
+    --opendealerrankimgurl: "";
+    --openplayerrankimgurl: "";
+    --opendealersuitimgurl: "";
+    --openplayersuitimgurl: "";
 }
 
 
@@ -18,6 +23,7 @@
     background-color: tomato;
     border-radius: 4px;
 }
+
 .toright1 {
     right: 58px;
     position: absolute;
@@ -74,10 +80,12 @@ a.mosueorigin {
 }
 
 .innerrowonecard {
+    /*荷官牌區*/
     height: 116px;
     /*background-color: blue;*/
     border: 4px solid #fda606;
     border-radius: 10px;
+    padding: 2px;
 }
 /*第二列*/
 .rowtwocard {
@@ -157,21 +165,115 @@ a.mosueorigin {
     text-align: center;
     line-height: 30px;
     font-weight: bold;
-    padding-top:10px;
-    
+    padding-top: 10px;
 }
 
 .chcard-title {
     color: red;
 }
+
 .chcard-body-1 {
     height: auto;
-    overflow: scroll;
+    overflow-y: scroll !important;
 }
 
 .chcard-text {
     color: red;
 }
+
 .dispnone {
     display: none;
 }
+
+#dealerrankcard {
+    /*background-image: url(./img/suit2/cardback.png);
+    background-size: 95% 88%;
+    height: inherit;
+    background-repeat: no-repeat;
+    background-position: top;
+    border-radius: 10px;*/
+}
+
+#dealersuitcard {
+    /*background-image: url(./img/suit2/cardback.png);
+    background-size: 95% 88%;
+    height: inherit;
+    background-repeat: no-repeat;
+    background-position: top;
+    border-radius: 10px;*/
+}
+/*覆牌*/
+.cardclose {
+    background-image: url(./img/suit2/cardback.png);
+    background-size: 95% 88%;
+    height: inherit;
+    background-repeat: no-repeat;
+    background-position: top;
+    border-radius: 10px;
+}
+
+
+/*開牌*/
+/*--opendealerrankimgurl: "";
+--openplayerrankimgurl: "";
+--opendealersuitimgurl: "";
+--openplayersuitimgurl: "";*/
+
+#dealerrankcard.cardopen {
+    /*荷官點數*/
+    background-image: var(--opendealerrankimgurl);
+    background-size: 95% 88%;
+    height: inherit;
+    background-repeat: no-repeat;
+    background-position: top;
+    border-radius: 10px;
+}
+#dealersuitcard.cardopen {
+    /*荷官花色*/
+    background-image: var(--opendealersuitimgurl);
+    background-size: 95% 88%;
+    height: inherit;
+    background-repeat: no-repeat;
+    background-position: top;
+    border-radius: 10px;
+}
+#playerrankcard.cardopen {
+    /*玩家點數*/
+    background-image: var(--openplayerrankimgurl);
+    background-size: 95% 88%;
+    height: inherit;
+    background-repeat: no-repeat;
+    background-position: top;
+    border-radius: 10px;
+}
+
+#playersuitcard.cardopen {
+    /*玩家花色*/
+    background-image: var(--openplayersuitimgurl);
+    background-size: 95% 88%;
+    height: inherit;
+    background-repeat: no-repeat;
+    background-position: top;
+    border-radius: 10px;
+}
+
+/*抽牌*/
+.pickcard {
+}
+
+/*下注*/
+.bet {
+    background-image: url(./img/betchip.png);
+    background-size: 95% 51px;
+    height: inherit;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+/*派牌鈕*/
+.biddedbtn {
+    color:orangered;
+    margin-top:30px;
+
+}
+
+

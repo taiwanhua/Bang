@@ -2,7 +2,24 @@
     ViewBag.Title = "Home Page";
 }
 @section scripts {
+    <script type="text/javascript">
 
+        document.body.style.setProperty("--opendealerrankimgurl", "url(./img/suit2/cardback.png)")
+
+        document.body.style.setProperty("--opendealersuitimgurl", "url(./img/suit2/suit2heartB.jpg)")
+
+        document.body.style.setProperty("--openplayerrankimgurl", "url(./img/suit2/A.png)")
+
+        document.body.style.setProperty("--openplayersuitimgurl", "url(./img/suit2/suit2diamondB.jpg)")
+
+        $(".subinnerrowtwocard").addClass("cardclose");
+        $(".subinnerrowthreecard").addClass("cardclose");
+        $(".subinnerrowtwobetsmall").addClass("bet");
+        $(".subinnerrowtwobetbig").addClass("bet");
+        //$("#bidded").attr({ "disabled": "disabled" });
+
+
+    </script>
 
 }
 
@@ -47,12 +64,18 @@
                 </div>
                 <div class="col-1 rowonecard">
                     <div class="innerrowonecard">
-                        6
+                        @* 6 荷官花色 *@
+                        <div id="dealersuitcard" class="cardopen">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowonecard">
                     <div class="innerrowonecard">
-                        7
+                        @* 7 荷官點數 *@
+                        <div id="dealerrankcard" class="cardopen">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowonecard">
@@ -85,17 +108,27 @@
             <div class="row pcard">
                 <div class="col-1 rowtwocard">
                     <div class="innerrowtwobetsmall">
-                        Small
+                        Small<br> Both
+                        <div class="subinnerrowtwobetsmall">
+
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-1 rowtwocard">
                     <div class="innerrowtwobetsmall">
                         Small<br>  Suit
+                        <div class="subinnerrowtwobetsmall">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowtwocard">
                     <div class="innerrowtwobetsmall">
                         Small<br>  Rank
+                        <div class="subinnerrowtwobetsmall">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowtwocard">
@@ -110,17 +143,26 @@
                 </div>
                 <div class="col-1 rowtwocard">
                     <div class="innerrowtwocard">
-                        6
+                        @* 6 花色抽牌區 *@
+                        <div class="subinnerrowtwocard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowtwocard">
                     <div class="innerrowtwocard">
-                        7
+                        @* 7 花色抽牌區 *@
+                        <div class="subinnerrowtwocard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowtwocard">
                     <div class="innerrowtwocard">
-                        8
+                        @* 8 花色抽牌區 *@
+                        <div class="subinnerrowtwocard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowtwocard">
@@ -130,17 +172,26 @@
                 </div>
                 <div class="col-1 rowtwocard">
                     <div class="innerrowtwobetbig">
-                        Big
+                        Big<br> Both
+                        <div class="subinnerrowtwobetbig">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowtwocard">
                     <div class="innerrowtwobetbig">
                         Big <br> Suit
+                        <div class="subinnerrowtwobetbig">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowtwocard">
                     <div class="innerrowtwobetbig">
                         Big <br> Rank
+                        <div class="subinnerrowtwobetbig">
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -148,62 +199,98 @@
             <div class="row pcard">
                 <div class="col-1 rowthreecard">
                     <div class="innerrowthreecard">
-                        1
+                        @* 1 點數抽牌區 *@
+                        <div class="subinnerrowthreecard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowthreecard">
                     <div class="innerrowthreecard">
-                        2
+                        @* 2 點數抽牌區 *@
+                        <div class="subinnerrowthreecard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowthreecard">
                     <div class="innerrowthreecard">
-                        3
+                        @* 3 點數抽牌區 *@
+                        <div class="subinnerrowthreecard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowthreecard">
                     <div class="innerrowthreecard">
-                        4
+                        @* 4 點數抽牌區 *@
+                        <div class="subinnerrowthreecard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowthreecard">
                     <div class="innerrowthreecard">
-                        5
+                        @* 5 點數抽牌區 *@
+                        <div class="subinnerrowthreecard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowthreecard">
                     <div class="innerrowthreecard">
-                        6
+                        @* 6 點數抽牌區 *@
+                        <div class="subinnerrowthreecard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowthreecard">
                     <div class="innerrowthreecard">
-                        7
+                        @* 7 點數抽牌區 *@
+                        <div class="subinnerrowthreecard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowthreecard">
                     <div class="innerrowthreecard">
-                        8
+                        @* 8 點數抽牌區 *@
+                        <div class="subinnerrowthreecard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowthreecard">
                     <div class="innerrowthreecard">
-                        9
+                        @* 9 點數抽牌區 *@
+                        <div class="subinnerrowthreecard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowthreecard">
                     <div class="innerrowthreecard">
-                        10
+                        @* 10 點數抽牌區 *@
+                        <div class="subinnerrowthreecard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowthreecard">
                     <div class="innerrowthreecard">
-                        11
+                        @* 11 點數抽牌區 *@
+                        <div class="subinnerrowthreecard">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowthreecard">
                     <div class="innerrowthreecard">
-                        12
+                        @* 12 點數抽牌區 *@
+                        <div class="subinnerrowthreecard">
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -236,12 +323,18 @@
                 </div>
                 <div class="col-1 rowfourcard">
                     <div class="innerrowfourcard">
-                        6
+                        @* 6 玩家花色 *@
+                        <div id="playersuitcard" class="cardopen">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowfourcard">
                     <div class="innerrowfourcard">
-                        7
+                        @* 7 玩家點數 *@
+                        <div id="playerrankcard" class="cardopen">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-1 rowfourcard">
@@ -256,7 +349,8 @@
                 </div>
                 <div class="col-1 rowfourcard">
                     <div>
-                        10
+                        @* 10 派牌控制 *@
+                        <button type="button" id="bidded" class="btn btn-primary biddedbtn" >派牌</button>
                     </div>
                 </div>
                 <div class="col-1 rowfourcard">
