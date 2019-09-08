@@ -22,7 +22,12 @@ namespace BangBang.Controllers
         public ActionResult Create()
         {
             //GET: PlayersController/Create
-            return View();
+            //IEnumerable<Player> m = PlayerRepos.GetAll();
+            //return View(m);
+            var IemPlayer = PlayerRepos.GetAll();
+            IemPlayerViewModel model = new IemPlayerViewModel { players = IemPlayer };
+            return View(model);
+
         }
 
 
@@ -44,14 +49,72 @@ namespace BangBang.Controllers
 
         public ActionResult Create(Player player)
         {
-            //GET: PlayersController/Create
+            //POST: PlayersController/Create
             if (!ModelState.IsValid)
             {
                 return View(player);
             }
             PlayerRepos.Add(player);
             PlayerRepos.Savechanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        [HttpPost]
+        public ActionResult PlayerNameexistVaild(String playername)
+        {
+            //POST: PlayersController/PlayerNameexistVaild
+
+            List<Player> QueryResult = PlayerRepos.GetByPlayerName(playername);
+            if (QueryResult.Count > 0)
+            {
+                return Json(false);
+            }
+            else
+            {
+                return Json(true);
+            }
+
+
+        }
+
+        public ActionResult Login()
+        {
+            //GET: PlayersController/Login
+            PlayerLogin playerLogin = new PlayerLogin();
+            return View(playerLogin);
+        }
+
+        [HttpPost]
+
+        public ActionResult Login(PlayerLogin playerLogin)
+        {
+            //POST: PlayersController/Login
+            if (!ModelState.IsValid)
+            {
+                return View(playerLogin);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult PlayerNameexist(String playername)
+        {
+            //POST: PlayersController/PlayerNameexistVaild
+
+            List<Player> QueryResult = PlayerRepos.GetByPlayerName(playername);
+            if (QueryResult.Count > 0)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json(false);
+            }
+
+
         }
     }
+
 }

@@ -56,6 +56,61 @@
 
                 }
             }
+            if (typeof (localStorage.getItem('gotosignin')) == "undefined" || localStorage.getItem('gotosignin') == null) {
+                if (typeof (localStorage.getItem('playerID')) != "undefined" && localStorage.getItem('playerID') != null) {
+                    $("#notlogincard").addClass("dispnone")
+                    $("#PlayerName").text("Hi," + localStorage.getItem('playerID'))
+                    $("#PlayerName").addClass("nav-link toright1 mr-sm-2")
+                    $("#LoginOut").text("登出")
+                    $("#LoginOut").addClass("nav-link toright mr-sm-2")
+                } else {
+                    $("#notlogincard").removeClass("dispnone")
+                }
+            } else {
+                if ((typeof (localStorage.getItem('playerID')) == "undefined" || localStorage.getItem('playerID') == null) && (typeof (localStorage.getItem('navselect')) != "undefined" && localStorage.getItem('navselect') != null)) {
+                    $("#notlogincard").removeClass("dispnone")
+                } else {
+                    $("#notlogincard").addClass("dispnone")
+                }
+            }
+            //const StoragePlayNameData = () => {
+            //    //註冊後將自動登入，將PlayerName寫入LocalStorage
+            //    $.ajax({
+            //        type: "POST",
+            //        url: "/home/LocalStorage_Read",
+            //        success: function (result) {
+            //            var obj = JSON.stringify(result);
+            //            SummitLocalStorage.LocalStorage.save(obj);
+            //            Alldata = SummitLocalStorage.LocalStorage.get({ key: "summit" });
+            //            ReadStorageData(Alldata);
+            //        }
+            //    });
+
+            //}
+            $("#agotosignin").click((e) => {
+                localStorage.removeItem('navselect')
+                localStorage.setItem('gotosignin', "Yes");
+                $("#notlogincard").addClass("dispnone")
+                console.log("OK")
+
+            })
+            $("#agotosignin1").click((e) => {
+                localStorage.removeItem('navselect')
+                localStorage.setItem('gotosignin', "Yes");
+                $("#notlogincard").addClass("dispnone")
+                console.log("OK")
+
+            })
+            $("#LoginOut").click((e) => {
+                localStorage.clear();
+                $("#PlayerName").text("Hi")
+                $("#PlayerName").addClass("nav-link toright1 mr-sm-2")
+                $("#notlogincard").removeClass("dispnone")
+                console.log("OK")
+
+            })
+           
+
         }
     </script>
 </head>
@@ -84,7 +139,10 @@
                         </li>
                         @*@Html.Partial("_LoginPartial")*@
                         <li class="nav-item active" id="PlayerName">
-                            <a class="nav-link toright mr-sm-2">Hi</a>
+                            <a class="nav-link toright1 mr-sm-2">Hi</a>
+                        </li>
+                        <li class="nav-item active" id="LoginOut">
+                            <a class="nav-link toright mr-sm-2">登出</a>
                         </li>
                     </ul>
                     @*<form class="form-inline">
@@ -106,12 +164,12 @@
     <div class="container body-content">
         @RenderBody()
         @*未登入卡片*@
-        <div class="card chlogincard" style="width: inherit;">
+        <div class="card chlogincard" id="notlogincard" style="width: inherit;">
             <div class="card-body">
                 <h5 class="card-title chcard-title">叮咚!</h5>
             </div>
             <div class="card-body chcard-body-1">
-                
+
                 <div class="card-text chcard-text">
                     還沒登入嗎?趕快前往登入或馬上註冊~<br><br><br>
                     以下為裝飾文字....<br>
@@ -196,10 +254,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="chcard-link col-6">
-                        <a href="#" class="card-link">登入</a>
+                        @Html.ActionLink("登入", "Login", "Players", new { area = "" }, new { @class = "card-link", id = "agotosignin1" })
                     </div>
                     <div class="chcard-link col-6">
-                        <a href="#" class="card-link">前往註冊</a>
+
+                        @Html.ActionLink("前往註冊", "Create", "Players", new { area = "" }, new { @class = "card-link", id = "agotosignin" })
+
                     </div>
                 </div>
             </div>

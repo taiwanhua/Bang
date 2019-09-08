@@ -14,6 +14,13 @@
 .toright {
     right: 10px;
     position: absolute;
+    cursor: pointer;
+    background-color: tomato;
+    border-radius: 4px;
+}
+.toright1 {
+    right: 58px;
+    position: absolute;
 }
 
 a.mosueorigin {
@@ -135,6 +142,7 @@ a.mosueorigin {
 .chlogincard {
     background-color: rgba(6, 6, 6, 0.96);
     position: absolute;
+    top: 150px;
     width: 56vw !important;
     height: 70vh !important;
     z-index: 20;
@@ -163,4 +171,7 @@ a.mosueorigin {
 
 .chcard-text {
     color: red;
+}
+.dispnone {
+    display: none;
 }

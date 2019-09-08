@@ -18,7 +18,7 @@ namespace BangBang.Models
         public DbSet<Walletrecord> Walletrecords { get; set; }
         public DbSet<GameRecord> GameRecords { get; set; }
         public DbSet<PlayerExperience> PlayerExperiences { get; set; }
-
+        //public DbSet<IemPlayer> IemPlayers { get; set; }
     }
 
 }

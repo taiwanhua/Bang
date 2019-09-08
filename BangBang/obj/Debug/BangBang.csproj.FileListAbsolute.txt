@@ -108,10 +108,12 @@ C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.Migrations._6.r
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.Migrations._7.resources
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.Migrations._8.resources
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.Migrations._9.resources
+C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.Migrations._10.resources
+C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.Migrations._11.resources
+C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.Migrations._12.resources
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.csproj.GenerateResource.cache
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.csproj.CoreCompileInputs.cache
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.csproj.CopyComplete
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.dll
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.pdb
-C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.Migrations._10.resources
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.csprojAssemblyReference.cache

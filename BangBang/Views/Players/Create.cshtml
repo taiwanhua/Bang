@@ -1,16 +1,26 @@
-﻿@model BangBang.Models.Player
+﻿@model BangBang.Models.IemPlayerViewModel
 
 @{
     ViewBag.Title = "Create";
 }
+<script type="text/javascript">
 
+    const StoragePlayNameData = () => {
+        //console.log($("#pnkey").val())
+        localStorage.removeItem('gotosignin');
+        if (typeof (localStorage.getItem('playerID')) != "undefined" && localStorage.getItem('playerID') != null) {
+            localStorage.setItem('playerID', $("#pnkey").val());
+        }
+    }
+
+</script>
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Player</h4>
         <hr />
@@ -18,30 +28,37 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PlayerName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PlayerName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PlayerName, new { htmlAttributes = new { @class = "form-control", id = "pnkey" } })
                 @Html.ValidationMessageFor(model => model.PlayerName, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.PlayerVipLevel, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PlayerVipLevel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.PlayerVipLevel, new SelectList(Model.players, "PlayerID", "PlayerName"), "請選擇", htmlAttributes: new { @class = "form-control" })
+
                 @Html.ValidationMessageFor(model => model.PlayerVipLevel, "", new { @class = "text-danger" })
             </div>
         </div>
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.PlayerVipLevel, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PlayerVipLevel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PlayerVipLevel, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="註冊" class="btn btn-outline-success" onclick="return StoragePlayNameData()" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+@*<div>
+        @Html.ActionLink("回到遊戲桌", "Index", "Home")
+    </div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

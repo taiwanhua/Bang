@@ -1,0 +1,53 @@
+﻿@model BangBang.Models.PlayerLogin
+
+@{
+    ViewBag.Title = "Login";
+}
+<script type="text/javascript">
+
+    const StoragePlayNameData1 = () => {
+        console.log($("#pnkey1").val())
+        localStorage.removeItem('navselect')
+        localStorage.removeItem('gotosignin');
+        if ($("#pnkey1").val()!==null) {
+              localStorage.setItem('playerID', $("#pnkey1").val());
+        }
+      
+
+    }
+
+</script>
+<h2>Login</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>PlayerLogin</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.PlayerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PlayerName, new { htmlAttributes = new { @class = "form-control", id = "pnkey1" } })
+                @Html.ValidationMessageFor(model => model.PlayerName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="登入" class="btn btn-outline-success" onclick="return StoragePlayNameData1()" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("前往註冊", "Create", "Players", new { area = "" }, new { id = "agotosignin1" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -220,15 +220,25 @@
     <Compile Include="Migrations\201909070616146_10.Designer.cs">
       <DependentUpon>201909070616146_10.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909071814391_11.cs" />
+    <Compile Include="Migrations\201909071814391_11.Designer.cs">
+      <DependentUpon>201909071814391_11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909071849555_12.cs" />
+    <Compile Include="Migrations\201909071849555_12.Designer.cs">
+      <DependentUpon>201909071849555_12.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DatabaseInitalizer.cs" />
     <Compile Include="Models\DataDbContext.cs" />
     <Compile Include="Models\GameRecord.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IemPlayerViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayerExperience.cs" />
+    <Compile Include="Models\PlayerLogin.cs" />
     <Compile Include="Models\Repositories\PlayerRepository.cs" />
     <Compile Include="Models\Repositories\Repository.cs" />
     <Compile Include="Models\Walletrecord.cs" />
@@ -335,6 +345,7 @@
     <Content Include="Views\Players\Index.cshtml" />
     <Content Include="Views\Players\Create.cshtml" />
     <Content Include="Views\Players\Details.cshtml" />
+    <Content Include="Views\Players\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -383,6 +394,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909070616146_10.resx">
       <DependentUpon>201909070616146_10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909071814391_11.resx">
+      <DependentUpon>201909071814391_11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909071849555_12.resx">
+      <DependentUpon>201909071849555_12.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
