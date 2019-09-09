@@ -239,7 +239,6 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayerExperience.cs" />
     <Compile Include="Models\PlayerLogin.cs" />
-    <Compile Include="Models\Plzamountbox.cs" />
     <Compile Include="Models\Repositories\PlayerRepository.cs" />
     <Compile Include="Models\Repositories\Repository.cs" />
     <Compile Include="Models\Repositories\WalletrecordsRepository.cs" />
@@ -257,6 +256,8 @@
     <Content Include="Content\img\betchip.png" />
     <Content Include="Content\img\dealer.png" />
     <Content Include="Content\img\plzbet.png" />
+    <Content Include="Content\img\space.png" />
+    <Content Include="Content\img\suit2\spacecard.png" />
     <Content Include="Content\img\Tablebg.jpg" />
     <Content Include="Content\img\talk.png" />
     <Content Include="Content\min.css" />

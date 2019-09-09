@@ -120,6 +120,41 @@ a.mosueorigin {
     }
 }
 
+/*花色選牌區發光動畫*/
+.addtoamtoshine {
+    /*添加動畫*/
+    animation-name: toamtoshine;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+
+@keyframes toamtoshine {
+    from {
+        border: 4px solid #fda606;
+    }
+
+    to {
+        border: 4px solid tomato;
+    }
+}
+
+/*點數選牌區發光動畫*/
+.addblueshine {
+    /*添加動畫*/
+    animation-name: blueshine;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+
+@keyframes blueshine {
+    from {
+        border: 4px solid #fda606;
+    }
+
+    to {
+        border: 4px solid rgba(42, 122, 191, 0.83);
+    }
+}
 .innerrowtwobetbig {
     height: 116px;
     /*background-color: blue;*/
@@ -139,6 +174,7 @@ a.mosueorigin {
     line-height: 30px;
     font-weight: bold;
 }
+
 .plzbet {
     background-image: url(./img/plzbet.png);
     background-size: 95% 40%;
@@ -182,6 +218,7 @@ a.mosueorigin {
     height: 70vh !important;
     z-index: 20;
 }
+
 
 .chcard-link {
     height: 50px !important;
@@ -239,6 +276,15 @@ a.mosueorigin {
     border-radius: 10px;
 }
 
+/*選牌*/
+.cardbeselected {
+    background-image: url(./img/suit2/spacecard.png);
+    background-size: 95% 88%;
+    height: inherit;
+    background-repeat: no-repeat;
+    background-position: top;
+    border-radius: 10px;
+}
 
 /*開牌*/
 /*--opendealerrankimgurl: "";
@@ -298,12 +344,37 @@ a.mosueorigin {
     background-repeat: no-repeat;
     background-position: top;
 }
-/*派牌鈕*/
-.biddedbtn {
-    color: orangered;
-    margin-top: 30px;
+/*下注空白背景*/
+.betspace {
+    background-image: url(./img/space.png);
+    background-size: 95% 51px;
+    height: inherit;
+    background-repeat: no-repeat;
+    background-position: top;
 }
 
+/*開牌鈕發光動畫*/
+.addorangeredshine {
+    /*添加動畫*/
+    background-color: orangered;
+    color: #161b17;
+    margin-top: 30px;
+    animation-name: orangeredshine;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+
+@keyframes orangeredshine {
+    from {
+        background-color:tomato;
+        border: 4px solid tomato;
+    }
+
+    to {
+        background-color: orangered;
+        border: 4px solid orangered;
+    }
+}
 /*荷官對話框*/
 #dealertalk {
     background-image: url(./img/talk.png);
@@ -340,4 +411,60 @@ a.mosueorigin {
     .textconsole::-webkit-scrollbar-track {
         /*總體濾鏡*/
         background-color: transparent;
+    }
+
+
+
+/*下注卡片*/
+#betboxx {
+    width: 50vw !important;
+    /* max-width: 800px !important; */
+    z-index: 200;
+    position: absolute;
+    top: 300px;
+    left: 42vw;
+}
+
+/*下注卡片拉條樣式*/
+/*清除拉條瀏覽器樣式*/
+/*清除拉條瀏覽器樣式*/
+input[type=range] {
+    -webkit-appearance: none !important;
+    /*width: auto !important;*/
+    border-radius: 10px !important;
+    /*使填充進圖調的圖形為員角*/
+}
+
+    /*拉條軌道*/
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none !important;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+        height: 15px !important;
+        /*設定軌道為員角*/
+        border-radius: 10px !important;
+        /*軌道陰影效果*/
+        box-shadow: 0 1px 1px #ff8000, inset 0 .125em .125em #ee790b !important;
+    }
+
+    /*獲取焦點時，取消邊框*/
+    input[type=range]:focus {
+        outline: none !important;
+    }
+
+    /*添加滑塊樣式*/
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none !important;
+        height: 25px !important;
+        width: 25px !important;
+        /*使滑塊超出軌道部分偏移量相等*/
+        margin-top: -5px !important;
+        background: #ff8080 !important;
+        /*外觀設置為圓形*/
+        border-radius: 50% !important;
+        /*設置邊框*/
+        border: solid 0.125em rgba(99, 58, 24, 0.904) !important;
+        /*添加底部陰影*/
+        box-shadow: 0 .125em .125em #3b4547 !important;
     }

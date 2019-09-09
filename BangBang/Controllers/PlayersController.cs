@@ -142,31 +142,7 @@ namespace BangBang.Controllers
 
 
         }
-        [HttpPost]
-        public ActionResult Maxbetamount(String playername,int betamount)
-        {
-            //POST: PlayersController/Getneweramount
 
-
-            //這裡有問題要處理
-            List<Player> QueryResult = PlayerRepos.GetByPlayerName(playername);
-            if (QueryResult.Count > 0)
-            {
-                int result = QueryResult[0].Walletrecords.Last().LatestAmount;
-
-                if (true)
-                {
-
-                }
-                return Json(result);
-            }
-            else
-            {
-                return Json(false);
-            }
-
-
-        }
     }
 
 }
