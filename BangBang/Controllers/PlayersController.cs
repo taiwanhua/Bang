@@ -12,6 +12,7 @@ namespace BangBang.Controllers
     {
         //注入接口層
         PlayerRepository PlayerRepos = new PlayerRepository();
+        WalletrecordsRepository WalletrecordsRepos = new WalletrecordsRepository();
 
         // GET: Players
         public ActionResult Index()
@@ -54,8 +55,15 @@ namespace BangBang.Controllers
             {
                 return View(player);
             }
+
             PlayerRepos.Add(player);
-            PlayerRepos.Savechanges();
+            //PlayerRepos.Savechanges();
+
+            //long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
+
+            Walletrecord walletrecord = new Walletrecord { Timestamp = long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss")), PreviousAmount = 0, LatestAmount = 100000, Player = player };
+            WalletrecordsRepos.Add(walletrecord);
+            WalletrecordsRepos.Savechanges();
             return RedirectToAction("Index", "Home");
         }
 
@@ -107,6 +115,50 @@ namespace BangBang.Controllers
             if (QueryResult.Count > 0)
             {
                 return Json(true);
+            }
+            else
+            {
+                return Json(false);
+            }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult Getneweramount(String playername)
+        {
+            //POST: PlayersController/Getneweramount
+
+            List<Player> QueryResult = PlayerRepos.GetByPlayerName(playername);
+            if (QueryResult.Count > 0)
+            {
+                int result = QueryResult[0].Walletrecords.Last().LatestAmount;
+                return Json(result);
+            }
+            else
+            {
+                return Json(false);
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult Maxbetamount(String playername,int betamount)
+        {
+            //POST: PlayersController/Getneweramount
+
+
+            //這裡有問題要處理
+            List<Player> QueryResult = PlayerRepos.GetByPlayerName(playername);
+            if (QueryResult.Count > 0)
+            {
+                int result = QueryResult[0].Walletrecords.Last().LatestAmount;
+
+                if (true)
+                {
+
+                }
+                return Json(result);
             }
             else
             {

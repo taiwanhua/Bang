@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @*<script type="text/javascript">
 
             //window.onload = function () {
@@ -18,9 +19,13 @@
 
         </script>*@
     <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         window.onload = () => {
             //alert('You clicked ' + "74574523!");
-            console.log("sdf")
+            //console.log("sdf")
+            $('[data-toggle="tooltip"]').tooltip();
             $(".tab").mouseover((e) => {
                 $(".tab").css({ "background-color": "#343a40" });
                 $(e.target).css({ "background-color": "rgb(95 ,158, 160,0.5)", "border-radius": "4px" });
@@ -108,8 +113,181 @@
                 $("#notlogincard").removeClass("dispnone")
                 console.log("OK")
 
-            })
-           
+            });
+
+
+            //##**********遊戲階段可呼叫函數 start************##
+
+            /**
+             * 開起下注金額框
+             *
+             */
+            const openbettextbox = (e) => {
+
+
+                let pID = "";
+
+                //取得錢包餘額，並寫入LocalStorage
+
+                let param = new FormData();
+                param.append("playername", gls('playerID'));
+                const PData = async () => {
+                    let result = await fetch("/Players/Getneweramount", {
+                        method: "POST",
+                        body: param
+                    })
+                        .then(res => {
+                            res.clone().json();
+                            console.log(res.ok);
+                            return res;
+                        }, reject => console.log("failed"))
+                        .then(data => {
+                            console.log(data);
+                            return data.json();
+                        });
+                    console.log(result);
+                    pID = result;
+                    console.log("get" + pID)
+                    $("body").append("<div class=\"card text-white bg-dark mb-3\" style=\"max-width: 18rem;\"><div class=\"card-header\">請輸入下注金額</div><div class=\"card-body\">" + "口袋還有多深 : "+pID + "</div></div>");
+
+                }
+                PData();
+                //不好用
+                //$.ajax({
+                //    type: "POST",
+                //    url: "/Players/Getneweramount",
+                //    data: { playername: gls('playerID') },
+                //    success: function (result) {
+                //        var obj = JSON.stringify(result);
+
+                //        pID = obj;
+                //        console.log("get" + pID)
+
+                //        //SummitLocalStorage.LocalStorage.save(obj);
+                //        //Alldata = SummitLocalStorage.LocalStorage.get({ key: "summit" });
+                //    }
+                //});
+            }
+
+            //##**********遊戲階段可呼叫函數 end************##
+
+
+            /**
+             *localStorage判斷函數，
+             * 若此localStorage Item未設置，返回0
+             * 若此localStorage Item已設置，且(字串)等於第二個參數，返回1
+             * 若此localStorage Item已設置，且(字串)不等於第二個參數，返回-1
+             * example:
+             * localStorage.setItem('playerID1', "");
+            *  console.log(Stringequal(localStorage.getItem('playerID1'), "123"))
+             */
+            const Stringequal = (localStorageItem, comparestring) => {
+                /*傳入第一個參數:localStorageItem ，如localStorage.getItem('playerID')，與第二個參數:要看有沒有等於的字串*/
+                if (localStorageItem === null) {
+                    //未設置此localStorageItem
+                    return 0;
+                } else {
+                    if (localStorageItem.toString() === comparestring) {
+                        //此localStorageItem已設置，並且等於comparestring
+                        return 1;
+                    } else {
+                        //此localStorageItem已設置，並且不等於comparestring
+                        return -1;
+                    }
+
+                }
+            }
+
+            /**
+             *localStorage判斷函數，
+             * 若此localStorage Item已設置，且(字串)等於""，返回true
+             * 若此localStorage Item已設置，且(字串)不等於""，返回false
+             * example:
+             * lsissetandnotequalstringempty('playerID')
+             */
+            const lsissetandnotequalstringempty = (itemname) => {
+                //expr1 || expr2	若 expr1 可轉換為 true，則返回 expr1；不然，返回 expr2。
+                if (0 != Stringequal(gls(itemname), "") || -1 == Stringequal(gls(itemname), "")) {
+                    //localStorageItem itemname已設置且不為空
+                    return true;
+                } else {
+                    //localStorageItem itemname已設置且為空
+                    return false;
+                }
+            }
+
+            /**
+             * 透過名字取得localStorageItem
+             * example:
+             * gls('playerID')
+             */
+            const gls = (itemname) => {
+                return localStorage.getItem(itemname)
+            }
+            /**
+             * 設置所有bet(1-6)為最新的值
+             * example:
+             * setnewerbet()
+             */
+            const setnewerbet = () => {
+                for (let i = 0; i < 3; i++) {
+                    /*設置所有bet(1-6)為最新的值*/
+                    let cls = ".subinnerrowtwobetsmall:eq(" + i + ")";
+                    let ls = "bet" + (i + 1);
+                    let getgls = gls(ls);
+                    $(cls).attr({ "data-toggle": "tooltip", "data-placement": "top", "title": getgls })
+                }
+                for (let i = 0; i < 3; i++) {
+                    /*設置所有bet(1-6)為最新的值*/
+                    let cls = ".subinnerrowtwobetbig:eq(" + i + ")";
+                    let ls = "bet" + (i + 4);
+                    let getgls = gls(ls);
+                    $(cls).attr({ "data-toggle": "tooltip", "data-placement": "top", "title": getgls })
+                }
+                $('[data-toggle="tooltip"]').tooltip();//再次加載樣式
+            }
+
+
+            if (lsissetandnotequalstringempty('playerID')) {
+                //localStorageItem playerID已設置且不為空
+                //
+                //若遊戲階段與下注區(1-6)接未設置:
+                //  1.設定遊戲階段初始值: 0
+                //  2.設定下注區(1-6)初始值: 0
+                //  3.派牌鈕設置disable
+                //  4.設置荷官對話框文字: XXX您好，請先點擊下注區下定盲注後派牌，提醒您今天所有的賠率皆為1:1。
+                //    可以選擇只比花色大小、點數大小或綜合大小，大小順序:黑桃 > 愛心 > 方塊 > 梅花；A>K>Q>J>10>...>2，
+                //    另外綜合大小為先比花色再比點數。
+                //  5.設置下注區發光動畫
+                //  6.設置下注區下注金額提示框
+                localStorage.setItem('gamestate', 0);
+                localStorage.setItem('bet1', 0);
+                localStorage.setItem('bet2', 0);
+                localStorage.setItem('bet3', 0);
+                localStorage.setItem('bet4', 0);
+                localStorage.setItem('bet5', 0);
+                localStorage.setItem('bet6', 0);
+                $("#bidded").attr({ "disabled": "disabled" });
+                $(".textconsole").text(gls('playerID') + "您好，請先點擊下注區下定盲注後派牌，提醒您今天所有的賠率皆為1:1。可以選擇只比花色大小、點數大小或綜合大小，大小順序: 黑桃 > 愛心 > 方塊 > 梅花；A > K > Q > J > 10 >...> 2，另外綜合大小為先比花色再比點數。")
+                //提示框屬性 data-toggle="tooltip" data-placement="top" title="Tooltip on top"
+                $(".innerrowtwobetsmall").addClass("addshine");
+                $(".innerrowtwobetbig").addClass("addshine");
+                $(".subinnerrowtwobetsmall").addClass("plzbet");
+                $(".subinnerrowtwobetbig").addClass("plzbet");
+                setnewerbet();
+
+
+                $(".subinnerrowtwobetbig").click(openbettextbox);
+                //openbettextbox();
+
+
+            }
+
+
+
+
+
+
 
         }
     </script>

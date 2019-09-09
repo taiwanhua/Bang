@@ -4,19 +4,20 @@
 @section scripts {
     <script type="text/javascript">
 
-        document.body.style.setProperty("--opendealerrankimgurl", "url(./img/suit2/cardback.png)")
+        //document.body.style.setProperty("--opendealerrankimgurl", "url(./img/suit2/cardback.png)")
 
-        document.body.style.setProperty("--opendealersuitimgurl", "url(./img/suit2/suit2heartB.jpg)")
+        //document.body.style.setProperty("--opendealersuitimgurl", "url(./img/suit2/suit2heartB.jpg)")
 
-        document.body.style.setProperty("--openplayerrankimgurl", "url(./img/suit2/A.png)")
+        //document.body.style.setProperty("--openplayerrankimgurl", "url(./img/suit2/A.png)")
 
-        document.body.style.setProperty("--openplayersuitimgurl", "url(./img/suit2/suit2diamondB.jpg)")
+        //document.body.style.setProperty("--openplayersuitimgurl", "url(./img/suit2/suit2diamondB.jpg)")
 
-        $(".subinnerrowtwocard").addClass("cardclose");
-        $(".subinnerrowthreecard").addClass("cardclose");
-        $(".subinnerrowtwobetsmall").addClass("bet");
-        $(".subinnerrowtwobetbig").addClass("bet");
+        //$(".subinnerrowtwocard").addClass("cardclose");
+        //$(".subinnerrowthreecard").addClass("cardclose");
+        //$(".subinnerrowtwobetsmall").addClass("bet");
+        //$(".subinnerrowtwobetbig").addClass("bet");
         //$("#bidded").attr({ "disabled": "disabled" });
+        //提示框屬性 data-toggle="tooltip" data-placement="top" title="Tooltip on top"
 
 
     </script>
@@ -29,8 +30,12 @@
         <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
     <div class="row">
         <div class="col-12 dealer">
+            <div id="dealertalk">
+                <div class="textconsole">
+                    123654原始文字是人類用來紀錄特定事物、簡化圖像而成的書寫符號。文字在發展早期都是圖畫形式的，有些是以形表意，有些是以形表音，其中有表意文字，與語音無甚關係，中國文字便是從此漸次演變而成。有些中文字可以從表面、部首、字旁看到一些聯繫旁通的字義。而這些特色是拼音文字所沒有的。
+                </div>
 
-
+            </div>
 
         </div>
         <div class="col-12 gametable">
@@ -59,13 +64,12 @@
                 </div>
                 <div class="col-1 rowonecard">
                     <div>
-                        5
                     </div>
                 </div>
                 <div class="col-1 rowonecard">
                     <div class="innerrowonecard">
                         @* 6 荷官花色 *@
-                        <div id="dealersuitcard" class="cardopen">
+                        <div id="dealersuitcard">
 
                         </div>
                     </div>
@@ -73,7 +77,7 @@
                 <div class="col-1 rowonecard">
                     <div class="innerrowonecard">
                         @* 7 荷官點數 *@
-                        <div id="dealerrankcard" class="cardopen">
+                        <div id="dealerrankcard">
 
                         </div>
                     </div>
@@ -126,7 +130,7 @@
                 <div class="col-1 rowtwocard">
                     <div class="innerrowtwobetsmall">
                         Small<br>  Rank
-                        <div class="subinnerrowtwobetsmall">
+                        <div class="subinnerrowtwobetsmall" >
 
                         </div>
                     </div>
@@ -173,7 +177,7 @@
                 <div class="col-1 rowtwocard">
                     <div class="innerrowtwobetbig">
                         Big<br> Both
-                        <div class="subinnerrowtwobetbig">
+                        <div class="subinnerrowtwobetbig" >
 
                         </div>
                     </div>
@@ -324,7 +328,7 @@
                 <div class="col-1 rowfourcard">
                     <div class="innerrowfourcard">
                         @* 6 玩家花色 *@
-                        <div id="playersuitcard" class="cardopen">
+                        <div id="playersuitcard">
 
                         </div>
                     </div>
@@ -332,7 +336,7 @@
                 <div class="col-1 rowfourcard">
                     <div class="innerrowfourcard">
                         @* 7 玩家點數 *@
-                        <div id="playerrankcard" class="cardopen">
+                        <div id="playerrankcard">
 
                         </div>
                     </div>
@@ -350,7 +354,7 @@
                 <div class="col-1 rowfourcard">
                     <div>
                         @* 10 派牌控制 *@
-                        <button type="button" id="bidded" class="btn btn-primary biddedbtn" >派牌</button>
+                        <button type="button" id="bidded" class="btn btn-primary biddedbtn">派牌</button>
                     </div>
                 </div>
                 <div class="col-1 rowfourcard">
