@@ -239,6 +239,7 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayerExperience.cs" />
     <Compile Include="Models\PlayerLogin.cs" />
+    <Compile Include="Models\Repositories\GameRecordRepository.cs" />
     <Compile Include="Models\Repositories\PlayerRepository.cs" />
     <Compile Include="Models\Repositories\Repository.cs" />
     <Compile Include="Models\Repositories\WalletrecordsRepository.cs" />

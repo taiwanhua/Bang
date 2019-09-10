@@ -112,7 +112,7 @@
                 $("#PlayerName").addClass("nav-link toright1 mr-sm-2")
                 $("#notlogincard").removeClass("dispnone")
                 console.log("OK")
-
+                gamestate2_billbtn();
             });
 
 
@@ -329,7 +329,7 @@
                     /**/
                     $(".subinnerrowtwobetsmall").click(openbettextboxstatge1);//下注區(1-3)綁定按鈕事件
                     $(".subinnerrowtwobetbig").click(openbettextboxstatge1);//下注區(4-6)綁定按鈕事件
-                    $("#bidded").addClass("addorangeredshine").removeClass("disabled").removeAttr("disabled");
+                    $("#bidded").addClass("addorangeredshine").removeClass("disabled").removeAttr("disabled").click(() => { gamestate1_opencard(); });;
                 }
 
             }
@@ -352,7 +352,7 @@
                 $(".innerrowthreecard").off('click');
                 let count = parseInt(gls("selectcardcount"));
                 if (0 == count) {
-                                        /*gamestate0_cardoutcome(1)*/;
+                                                                                                                                                    /*gamestate0_cardoutcome(1)*/;
                     document.body.style.setProperty("--openplayerrankimgurl", "url(./img/suit2/" + gamestate0_cardoutcome(1) + ".png)")
                     $("#playerrankcard").addClass("cardopen");
                     localStorage.setItem("selectcardcount", 1)
@@ -377,7 +377,7 @@
                     /**/
                     $(".subinnerrowtwobetsmall").click(openbettextboxstatge1);//下注區(1-3)綁定按鈕事件
                     $(".subinnerrowtwobetbig").click(openbettextboxstatge1);//下注區(4-6)綁定按鈕事件
-                    $("#bidded").addClass("addorangeredshine").removeClass("disabled").removeAttr("disabled");
+                    $("#bidded").addClass("addorangeredshine").removeClass("disabled").removeAttr("disabled").click(() => { gamestate1_opencard(); });
 
                 }
             }
@@ -411,7 +411,7 @@
                     if (0 == which) {
                         //抽花
                         let suit = suitcol.indexOf(gls("suit"));
-                        suitcol.splice(suit);
+                        suitcol.splice(suit, 1);
                         let res2 = suitcol[r % 3];
                         localStorage.setItem("dsuit", res2)
                         return res2;
@@ -419,7 +419,7 @@
                     } else {
                         //抽點數
                         let rank = rankcol.indexOf(gls("rank"));
-                        rankcol.splice(rank);
+                        rankcol.splice(rank, 1);
                         let res3 = rankcol[r % 12];
                         localStorage.setItem("drank", res3)
                         return res3;
@@ -559,12 +559,125 @@
                         //console.log(str);
                     }
                     $('#ar').RangeSlider({ min: 0, max: gls("amountinhand"), step: 1, color: "#f08c8c", putaid: "select", callback: RangeSlidercallback });//控制拉條
-                    $('#betbtn').click(() => { if ("1" !== gls('gamestate')) { $("body #betboxx").remove(); } else { updatebetX(betXid, invalue); setnewerbet(); $("body #betboxx").remove(); if (havebet()) { gamestate3_dealertalk(); closeplzbet_multi();} } });
+                    $('#betbtn').click(() => { if ("1" !== gls('gamestate')) { $("body #betboxx").remove(); } else { updatebetX(betXid, invalue); setnewerbet(); $("body #betboxx").remove(); if (havebet()) { gamestate3_dealertalk(); closeplzbet_multi(); } } });
                     $('#canclebetbtn').click(() => { $("body #betboxx").remove() });
                 }
 
                 PData();
 
+            }
+            /**
+            * 階段2 - 開牌按鈕事件函數
+            * 移除下注區閃光、清除下注區按鈕事件、開啟結算卡片(add DOM) 、打進遊戲紀錄DB、解除開盤按鈕事件、遊戲階段設定為2、綁定清帳事件
+            *
+            *
+            */
+            const gamestate1_opencard = () => {
+                //console.log(80879987456)
+                $(".innerrowtwobetsmall").removeClass("addshine");
+                $(".innerrowtwobetbig").removeClass("addshine");
+                let timeoutID = window.setTimeout(() => { for (let i = 1; i < 8; i++) { if (i < 8) { $("#bet" + i).off('click') } else { window.clearTimeout(timeoutID); } } }, 1000);
+                gamestate2_comparecard();
+                document.body.style.setProperty("--opendealerrankimgurl", "url(./img/suit2/" + gls("drank") + ".png)")
+                document.body.style.setProperty("--opendealersuitimgurl", "url(./img/suit2/" + gls("dsuit") + ".jpg)")
+                $("body").append("<div id=\"billbox\" class=\"card\" style=\"background-color: rgb(29, 28, 28); width: 18rem;\"><div class=\"card-body\"><h5 class=\"card-title\" style=\" color: brown\">本局統計</h5><p class=\"card-text\" style=\" font-size: 8px; color: brown\">嘿嘿，輸錢不付就看是要剁哪一隻手指...</p></div><ul class=\"list-group list-group-flush\"><li id=\"bill1\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Small Both</li><li id=\"bill2\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Small Suit</li><li id=\"bill3\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Small Rank</li><li id=\"bill4\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Big Both</li><li id=\"bill5\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Big Suit</li><li id=\"bill6\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Big Rank</li></ul><div class=\"card-body\"><div id=\"showds\"></div><div id=\"showdr\"></div><button id=\"billclosebtn\"type=\"button\" class=\"btn btn-info\">清帳</button></div></div>");
+                let billvalue1 = 0;
+                let billvalue2 = 0;
+                let billvalue3 = 0;
+                let billvalue4 = 0;
+                let billvalue5 = 0;
+                let billvalue6 = 0;
+                let glsbet1 = parseInt(gls("bet1"));
+                let glsbet2 = parseInt(gls("bet2"));
+                let glsbet3 = parseInt(gls("bet3"));
+                let glsbet4 = parseInt(gls("bet4"));
+                let glsbet5 = parseInt(gls("bet5"));
+                let glsbet6 = parseInt(gls("bet6"));
+                let rate = 1;//可設置賠率 (若設置賠率>1，玩家輸了可能要掏錢出來賠而不是只輸檯面)
+
+                if (1 == parseInt(gls("comparesuit"))) {
+                    //comparerank = 1 代表玩家花色大、玩家綜合大
+                    $("#bill1").addClass("losebet")//賭綜合小輸
+                    $("#bill2").addClass("losebet")//賭花色小輸
+                    $("#bill4").addClass("winbet")//賭綜合大贏
+                    $("#bill5").addClass("winbet")//賭花色大贏
+                    //設置金額、並輸入資料庫
+                    billvalue1 = -1 * rate * glsbet1;//輸掉多少賠率*下注金額
+                    billvalue2 = -1 * rate * glsbet2;//輸掉多少賠率*下注金額
+                    billvalue4 = (rate + 1) * glsbet4;//贏了多少賠率*下注金額
+                    billvalue5 = (rate + 1) * glsbet5;//贏了多少賠率*下注金額
+
+                } else {
+                    //comparerank = -1 代表玩家花色小、玩家綜合小 (或平手)
+                    $("#bill1").addClass("winbet")//賭綜合小贏
+                    $("#bill2").addClass("winbet")//賭花色小贏
+                    $("#bill4").addClass("losebet")//賭綜合大輸
+                    $("#bill5").addClass("losebet")//賭花色大輸
+                    //設置金額、並輸入資料庫
+                    billvalue1 = (rate + 1) * glsbet1;//贏了多少賠率*下注金額
+                    billvalue2 = (rate + 1) * glsbet2;//贏了多少賠率*下注金額
+                    billvalue4 = -1 * rate * glsbet4;//輸掉多少賠率*下注金額
+                    billvalue5 = -1 * rate * glsbet5;//輸掉多少賠率*下注金額
+
+                }
+                if (1 == parseInt(gls("comparerank"))) {
+                    //comparesuit=1 代表玩家點數大
+                    $("#bill3").addClass("losebet")//賭點數小輸
+                    $("#bill6").addClass("winbet")//賭點數大贏
+                    //設置金額、並輸入資料庫
+                    billvalue3 = -1 * rate * glsbet3;//輸掉多少賠率*下注金額
+                    billvalue6 = (rate + 1) * glsbet6;//贏了多少賠率*下注金額
+                } else {
+                    //comparesuit=-1 代表玩家點數小 (或平手)
+                    $("#bill3").addClass("winbet")//賭點數小贏
+                    $("#bill6").addClass("losebet")//賭點數大輸
+                    //設置金額、並輸入資料庫
+                    billvalue3 = (rate + 1) * glsbet3;//贏了多少賠率*下注金額
+                    billvalue6 = -1 * rate * glsbet6;//輸掉多少賠率*下注金額
+                }
+                let tostoreinDB = billvalue1 + billvalue2 + billvalue3 + billvalue4 + billvalue5 + billvalue6;
+                /* 將輸贏金額加到清帳卡片上*/
+                $("#bill1").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue1 + "</div>")
+                $("#bill2").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue2 + "</div>")
+                $("#bill3").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue3 + "</div>")
+                $("#bill4").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue4 + "</div>")
+                $("#bill5").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue5 + "</div>")
+                $("#bill6").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue6 + "</div>")
+
+
+                /*輸入資料庫參數*/
+                let param = new FormData();
+                //String playername, int previousAmount, int latestAmount
+                param.append("playername", gls("playerID"));
+                param.append("previousAmount", parseInt(gls("totalamount")));
+                param.append("latestAmount", tostoreinDB);
+                /*輸入資料庫函數*/
+                let storeinDB = async () => {
+                    let result = await fetch("/Home/StoretoDB", {
+                        method: "POST",
+                        body: param
+                    })
+                        .then(res => {
+                            res.clone().json();
+                            console.log(res.ok);
+                            return res;
+                        }, reject => console.log("failed"))
+                        .then(data => {
+                            console.log(data);
+                            return data.json();
+                        });
+                    console.log(result);
+                    //設定遊戲階段為2
+                    localStorage.setItem("gamestate", 2);
+                    //綁定清帳事件
+                    $("#billclosebtn").click(gamestate2_billbtn);
+                    //
+
+                    //解除開牌按鈕事件
+                    $("#bidded").off('click');
+
+                }
+                storeinDB();
             }
             //-------------------------------階段2-------------------------------
             /**
@@ -576,15 +689,117 @@
                 $(".textconsole").text(gls('playerID') + "，您現在可以任意加注後開牌。");
 
             }
-            //-------------------------------階段3-------------------------------
+
             /**
-             * 階段3 - 設定荷官說明
+             * 階段2 - 牌面比大小函數
              *
+             * 會設定兩個變數comparerank、comparesuit
+             * comparerank=1 代表玩家花色大、玩家綜合大
+             * comparerank=-1 代表玩家花色小、玩家綜合小  (或平手)
+             * comparesuit=1 代表玩家點數大
+             * comparesuit=-1 代表玩家點數小  (或平手)
+             */
+            const gamestate2_comparecard = () => {
+                let suitcol = ["suit2clubB", "suit2diamondB", "suit2heartB", "suit2spadeB"];
+                let rankcol = ["two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "J", "Q", "K", "A"];
+                let ps = suitcol.indexOf(gls("suit"));
+                let pr = suitcol.indexOf(gls("rank"));
+                let ds = suitcol.indexOf(gls("dsuit"));
+                let dr = suitcol.indexOf(gls("drank"));
+                if (ps > ds) {
+                    //玩家花色大
+                    //玩家綜合大
+                    localStorage.setItem("comparesuit", 1);
+                } else {
+                    //玩家花色小
+                    //玩家綜合小
+                    localStorage.setItem("comparesuit", -1);
+                }
+                if (pr > dr) {
+                    //玩家點數大
+                    localStorage.setItem("comparerank", 1);
+                } else {
+                    //玩家點數小
+                    localStorage.setItem("comparerank", -1);
+                }
+
+            }
+            /**
+             * 階段2 - 清帳按鈕函數
+             * 重設回出始狀態
              *
              */
+            const gamestate2_billbtn = () => {
+                // $(".textconsole").text(gls('playerID') + "您好，請先點擊下注區下定盲注後派牌，提醒您今天所有的賠率皆為1:1。可以選擇只比花色大小、點數大小或綜合大小，大小順序: 黑桃 > 愛心 > 方塊 > 梅花；A > K > Q > J > 10 >...> 2，另外綜合大小為先比花色再比點數。");
+                //重置
+                if (lsissetandnotequalstringempty('playerID') && 1 === Stringequal(gls("gamestate"), "2")) {
+                    //if (lsissetandnotequalstringempty('playerID')) {
+                    //console.log(123456798)
+                    //localStorageItem playerID已設置且不為空，且localStorageItem gamestate =2
+                    //
+                    //若遊戲階段與下注區(1-6)接未設置:
+                    //  1.設定遊戲階段初始值: 0
+                    //  2.設定下注區(1-6)初始值: 0
+                    //  3.派牌鈕設置disable
+                    //  4.設置荷官對話框文字: XXX您好，請先點擊下注區下定盲注後派牌，提醒您今天所有的賠率皆為1:1。
+                    //    可以選擇只比花色大小、點數大小或綜合大小，大小順序:黑桃 > 愛心 > 方塊 > 梅花；A>K>Q>J>10>...>2，
+                    //    另外綜合大小為先比花色再比點數。
+                    //  5.設置下注區發光動畫
+                    //  6.設置下注區下注金額提示框
+                    localStorage.setItem('gamestate', 0);
+                    localStorage.setItem('selectcardcount', 0);
+                    localStorage.setItem('bet1', 0);
+                    localStorage.setItem('bet2', 0);
+                    localStorage.setItem('bet3', 0);
+                    localStorage.setItem('bet4', 0);
+                    localStorage.setItem('bet5', 0);
+                    localStorage.setItem('bet6', 0);
+                    localStorage.removeItem("suit");
+                    localStorage.removeItem("rank");
+                    localStorage.removeItem("dsuit");
+                    localStorage.removeItem("drank");
+                    localStorage.removeItem("comparesuit");
+                    localStorage.removeItem("comparerank");
+                    localStorage.removeItem("totalamount");
+                    localStorage.removeItem("amountinhand");
+                    $("#bidded").attr({ "disabled": "disabled" });
+                    $(".textconsole").text(gls('playerID') + "您好，請先點擊下注區下定盲注後派牌，提醒您今天所有的賠率皆為1:1。可以選擇只比花色大小、點數大小或綜合大小，大小順序: 黑桃 > 愛心 > 方塊 > 梅花；A > K > Q > J > 10 >...> 2，另外綜合大小為先比花色再比點數。")
+                    //提示框屬性 data-toggle="tooltip" data-placement="top" title="Tooltip on top"
+                    $(".innerrowtwobetsmall").addClass("addshine");
+                    $(".innerrowtwobetbig").addClass("addshine");
+                    $(".subinnerrowtwobetsmall").addClass("plzbet");
+                    $(".subinnerrowtwobetbig").addClass("plzbet");
+                    setnewerbet();
+
+
+                    $(".subinnerrowtwobetsmall").click(openbettextbox);//下注區(1-3)綁定按鈕事件
+                    $(".subinnerrowtwobetbig").click(openbettextbox);//下注區(4-6)綁定按鈕事件
+                    $("#billbox").remove();
+                    //移除遊戲桌卡牌
+                    $(".innerrowonecard").removeClass("cardclose");
+                    $(".innerrowtwocard").removeClass("cardclose").removeClass("cardbeselected");
+                    $(".innerrowthreecard").removeClass("cardclose").removeClass("cardbeselected");
+                    $("#playersuitcard").removeClass("cardopen")
+                    $("#playerrankcard").removeClass("cardopen")
+                    //移除下注區 betspace plzbet
+                    $(".subinnerrowtwobetsmall").removeClass("betspace").removeClass("bet");
+                    $(".subinnerrowtwobetbig").removeClass("betspace").removeClass("bet");
+                    //移除開牌鈕
+                    $("#bidded").removeClass("addorangeredshine").addClass("disabled").attr("disabled");
+
+                }
+
+            }
+
+
+            //-------------------------------階段3-------------------------------
+            /**
+            * 階段3 - 設定荷官說明
+            *
+            *
+            */
             const gamestate3_dealertalk = () => {
                 $(".textconsole").text(gls('playerID') + "，如果您準備好了不再加注，那就開牌吧!");
-
             }
 
 
@@ -620,8 +835,8 @@
 
             /**
              *localStorage判斷函數，
-             * 若此localStorage Item已設置，且(字串)等於""，返回true
-             * 若此localStorage Item已設置，且(字串)不等於""，返回false
+             * 若此localStorage Item已設置，且(字串)不等於""，返回true
+             * 若此localStorage Item已設置，且(字串)等於""，返回false
              * example:
              * lsissetandnotequalstringempty('playerID')
              */
@@ -706,8 +921,8 @@
             /**/
             /**/
             /*初始化替換2，3行*/
-            //if (lsissetandnotequalstringempty('playerID') && 0===Stringequal(gls("gamestate"))) {
-            if (lsissetandnotequalstringempty('playerID')) {
+            if (lsissetandnotequalstringempty('playerID') && 0 === Stringequal(gls("gamestate"))) {
+                //if (lsissetandnotequalstringempty('playerID')) {
                 //console.log(123456798)
                 //localStorageItem playerID已設置且不為空，且localStorageItem gamestate未設置
                 //
@@ -746,9 +961,8 @@
                 $(".subinnerrowtwobetsmall").click(openbettextbox);//下注區(1-3)綁定按鈕事件
                 $(".subinnerrowtwobetbig").click(openbettextbox);//下注區(4-6)綁定按鈕事件
 
-
-
-
+            } else {
+                gamestate2_billbtn();
             }
 
 
