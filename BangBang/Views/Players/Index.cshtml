@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.PlayerName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PlayerVipLevel)
+            推薦人編號
         </th>
         <th></th>
     </tr>
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.PlayerVipLevel)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PlayerID }) |
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.PlayerID }) |*@
             @Html.ActionLink("Details", "Details", new { id=item.PlayerID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PlayerID })
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.PlayerID })*@
         </td>
     </tr>
 }

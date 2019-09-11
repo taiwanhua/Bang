@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,6 +16,7 @@ namespace BangBang.Models
         public int PlayerID { get; set; }
         [Required]
         public String Experience { get; set; }
+        [JsonIgnore()]
         public virtual Player Player { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,7 @@ namespace BangBang.Models
         public int LatestAmount { get; set; }
         //添加外鍵(Many-to-One) Walletrecord ------> Player
         public int PlayerID { get; set; }
+        [JsonIgnore()]
         public virtual Player Player { get; set; }
     }
 }

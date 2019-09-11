@@ -1,7 +1,61 @@
-﻿@{
+﻿@model IEnumerable<BangBang.Models.Player>
+@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<script type="text/javascript">
+    //let ls = localStorage.getItem('playerID');
+    //let pID1 = "";
+    //let param1 = new FormData();
+    //param1.append("playername", ls);
+    //const Getamount1 = async () => {
+    //    let result1 = await fetch("/Home/GetWalleteinfo", {
+    //        method: "POST",
+    //        body: param1
+    //    })
+    //        .then(res => {
+    //            res.clone().json();
+    //            //console.log(res.ok);
+    //            return res;
+    //        }, reject => console.log("failed"))
+    //        .then(data => {
+    //            //console.log(data);
+    //            //console.log(data.json());
+    //            return data.json();
+    //        });
+    //    //console.log(result);
+    //    pID1 = result1;
 
-<p>Use this area to provide additional information.</p>
+    //};
+    //Getamount1();
+</script>
+<h2>看看這口袋風雲榜</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PlayerName)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerName)
+            </td>
+            
+            <td>
+                @Html.ActionLink("詳情", "Details", "Players",  new { id = item.PlayerID},new { id = item.PlayerID }) |
+            </td>
+        </tr>
+    }
+
+    
+    @*口袋*@
+    @*<h3>@ViewBag.Message</h3>
+        <h3>@ViewBag.thisplayname</h3>*@
+
+
+
+

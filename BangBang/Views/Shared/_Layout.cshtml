@@ -8,6 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     @*<script type="text/javascript">
 
             //window.onload = function () {
@@ -352,7 +353,7 @@
                 $(".innerrowthreecard").off('click');
                 let count = parseInt(gls("selectcardcount"));
                 if (0 == count) {
-                                                                                                                                                                        /*gamestate0_cardoutcome(1)*/;
+                                                                                                                                                                            /*gamestate0_cardoutcome(1)*/;
                     document.body.style.setProperty("--openplayerrankimgurl", "url(./img/suit2/" + gamestate0_cardoutcome(1) + ".png)")
                     $("#playerrankcard").addClass("cardopen");
                     localStorage.setItem("selectcardcount", 1)
@@ -1099,14 +1100,14 @@
                     <span class="navbar-toggler-icon"></span>
 
                 </button>
-
+                
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
                             @Html.ActionLink("遊戲桌", "Index", "Home", new { area = "" }, new { @class = "nav-link tab" })
                         </li>
                         <li class="nav-item active">
-                            @Html.ActionLink("口袋", "About", "Home", new { area = "" }, new { @class = "nav-link tab" })
+                            @Html.ActionLink("口袋", "About", "Home", new { name = "" }, new { @class = "nav-link tab" })
                         </li>
                         <li class="nav-item active">
                             @Html.ActionLink("光輝史", "Contact", "Home", new { area = "" }, new { @class = "nav-link tab" })
@@ -1120,9 +1121,9 @@
                         </li>
                     </ul>
                     @*<form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-                        </form>*@
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+            </form>*@
 
                 </div>
             </nav>

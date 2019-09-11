@@ -50,6 +50,7 @@ C:\Users\Arhua\source\repos\BangBang\BangBang\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Arhua\source\repos\BangBang\BangBang\bin\Antlr3.Runtime.dll
 C:\Users\Arhua\source\repos\BangBang\BangBang\bin\EntityFramework.dll
 C:\Users\Arhua\source\repos\BangBang\BangBang\bin\EntityFramework.SqlServer.dll
+C:\Users\Arhua\source\repos\BangBang\BangBang\bin\Json.Net.dll
 C:\Users\Arhua\source\repos\BangBang\BangBang\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Arhua\source\repos\BangBang\BangBang\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Arhua\source\repos\BangBang\BangBang\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -116,3 +117,4 @@ C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.csproj.CoreComp
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.csproj.CopyComplete
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.dll
 C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.pdb
+C:\Users\Arhua\source\repos\BangBang\BangBang\obj\Debug\BangBang.csprojAssemblyReference.cache
