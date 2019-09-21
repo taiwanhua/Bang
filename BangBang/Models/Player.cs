@@ -18,11 +18,11 @@ namespace BangBang.Models
         public String PlayerName { get; set; }
         [Display(Name ="推薦人")]
         public int PlayerVipLevel { get; set; }
-        [JsonIgnore()]
+      
         public virtual List<Walletrecord> Walletrecords { get; set; }
-        [JsonIgnore()]
+        
         public virtual List<GameRecord> GameRecords { get; set; }
-        [JsonIgnore()]
+      
         public virtual PlayerExperience PlayerExperience { get; set; }
     }
 }

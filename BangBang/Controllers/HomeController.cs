@@ -2,6 +2,7 @@
 using BangBang.Models.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -57,16 +58,22 @@ namespace BangBang.Controllers
         public ActionResult GetWalleteinfo(string playername)
         {
             var context = new DataDbContext();
-            var product = context.Walletrecords.SqlQuery("select a.* from dbo.Walletrecords as a where playerId=1").ToList();
-          
-            if (product.Count() > 0)
+            var playergetid = context.Players.SqlQuery("select p.* from dbo.Players as p where playerName = @playername", new SqlParameter("playername", playername)).ToList();
+            var playid = (from playerid in playergetid select playerid.PlayerID).SingleOrDefault();
+            var playidWalletrecords = context.Walletrecords.SqlQuery("select a.* from dbo.Walletrecords as a where playerId=@playerid", new SqlParameter("playerid", playid)).ToList();
+            var playidGameRecords = context.GameRecords.SqlQuery("select a.* from dbo.GameRecords as a where playerId=@playerid", new SqlParameter("playerid", playid)).ToList();
+
+            var linqt = (from w in playidWalletrecords join g in playidGameRecords on w.Timestamp equals g.Timestamp select new joinresult {Timestamp=w.Timestamp, PreviousAmount=w.PreviousAmount, LatestAmount=w.LatestAmount, Stake=g.Stake }).ToList();
+
+
+            if (linqt.Count() > 0)
             {
                 //List<Walletrecord> result = QueryResult[0].Walletrecords;
                 // String jsonn=JsonConvert.SerializeObject(result, Formatting.Indented);
                 JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-                var jsons = javaScriptSerializer.Serialize(product);
-                string f = "[\"Date\": \"2019/7/10\",\"Time\": \"15:00:59\"}]";
-                return Json(f);
+                var jsons = javaScriptSerializer.Serialize(linqt);
+                //string f = "[\"Date\": \"2019/7/10\",\"Time\": \"15:00:59\"}]";
+                return Json(jsons);
             }
             else
             {

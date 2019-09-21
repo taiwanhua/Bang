@@ -1,12 +1,86 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@*<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>*@
+<h2>光輝史</h2>
 
-JOIN輸贏紀錄與錢包金額表待完成
+<script type="text/javascript">
+    let ls = localStorage.getItem('playerID');
+    let red = [];
+    let param1 = new FormData();
+    param1.append("playername", ls);
+    const Getamount1 = async () => {
+        let result1 = await fetch("/Home/GetWalleteinfo", {
+            method: "POST",
+            body: param1
+        })
+            .then(res => {
+                res.clone().json();
+                //console.log(res.ok);
+                return res;
+            }, reject => console.log("failed"))
+            .then(data => {
+                //console.log(data);
+                //console.log(data.json());
+                return data.json();
+            });
+        //console.log(result);
+        red.push(JSON.parse(result1));
+        red[0].forEach((e, index) => {
+            
+            timestampstr = e.Timestamp.toString().substring(0, 4)+"/"+ e.Timestamp.toString().substring(4, 6)+"/"+e.Timestamp.toString().substring(6, 8)+"-"+e.Timestamp.toString().substring(8, 10)+":"+e.Timestamp.toString().substring(10, 12)+":"+e.Timestamp.toString().substring(12,14);
+            
+            $("#joindetail").append("<tr><th scope=\"row\">"+index+"</th><td>" + timestampstr + "</td><td>" + e.PreviousAmount + "</td><td>" + e.Stake + "</td><td>" + e.LatestAmount + "</td></tr>");
+        })
+        
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+
+    };
+    Getamount1();
+    
+    
+    
+    
+   
+    
+
+</script>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">日期時間</th>
+            <th scope="col">原口袋金額</th>
+            <th scope="col">那次輸贏多少</th>
+            <th scope="col">新口袋金額</th>
+        </tr>
+    </thead>
+    <tbody id="joindetail">
+        @*<tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>mdo</td>
+            <td>mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>fat</td>
+            <td>mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>twitter</td>
+            <td>mdo</td>
+        </tr>*@
+    </tbody>
+</table>
+
