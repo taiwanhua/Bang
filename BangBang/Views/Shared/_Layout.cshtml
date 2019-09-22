@@ -1091,50 +1091,50 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                @*<a class="navbar-brand" href="#">@Html.ActionLink("Bang!", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>*@
-                <a class="navbar-brand mosueorigin" a href=javascript:void(0)>Bang!</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+    <div class="navbar navbar-inverse navbar-fixed-top changenav">
+        @*<div class="container">*@
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+            @*<a class="navbar-brand" href="#">@Html.ActionLink("Bang!", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>*@
+            <a class="navbar-brand mosueorigin" a href=javascript:void(0)>Bang!</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
 
-                </button>
-                
-                <div class="collapse navbar-collapse" id="navbarColor01">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            @Html.ActionLink("遊戲桌", "Index", "Home", new { area = "" }, new { @class = "nav-link tab" })
-                        </li>
-                        <li class="nav-item active">
-                            @Html.ActionLink("口袋", "About", "Home", new { name = "" }, new { @class = "nav-link tab" })
-                        </li>
-                        <li class="nav-item active">
-                            @Html.ActionLink("光輝史", "Contact", "Home", new { area = "" }, new { @class = "nav-link tab" })
-                        </li>
-                        @*@Html.Partial("_LoginPartial")*@
-                        <li class="nav-item active" id="PlayerName">
-                            <a class="nav-link toright1 mr-sm-2">Hi</a>
-                        </li>
-                        <li class="nav-item active" id="LoginOut">
-                            <a class="nav-link toright mr-sm-2">登出</a>
-                        </li>
-                    </ul>
-                    @*<form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-            </form>*@
+            </button>
 
-                </div>
-            </nav>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        @Html.ActionLink("遊戲桌", "Index", "Home", new { area = "" }, new { @class = "nav-link tab" })
+                    </li>
+                    <li class="nav-item active">
+                        @Html.ActionLink("口袋", "About", "Home", new { name = "" }, new { @class = "nav-link tab" })
+                    </li>
+                    <li class="nav-item active">
+                        @Html.ActionLink("光輝史", "Contact", "Home", new { area = "" }, new { @class = "nav-link tab" })
+                    </li>
+                    @*@Html.Partial("_LoginPartial")*@
+                    <li class="nav-item active" id="PlayerName">
+                        <a class="nav-link toright1 mr-sm-2">Hi</a>
+                    </li>
+                    <li class="nav-item active" id="LoginOut">
+                        <a class="nav-link toright mr-sm-2">登出</a>
+                    </li>
+                </ul>
+                @*<form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                    </form>*@
 
-
+            </div>
+        </nav>
 
 
 
 
 
-        </div>
+
+
+        @*</div>*@
     </div>
     <div class="container body-content">
         @RenderBody()
@@ -1239,11 +1239,11 @@
                 </div>
             </div>
         </div>
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Bang! Bang! Bang! <font face="DFKai-sb">就叫你不要賭</font></p>
-        </footer>
-    </div>
 
+    </div>
+    <footer>
+        <p style="text-align:center;">&copy; @DateTime.Now.Year - Bang! Bang! Bang! <font face="DFKai-sb">就叫你不要賭</font></p>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

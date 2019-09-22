@@ -13,7 +13,16 @@
 }*/
 .bg-dark {
     background-color: #343a40 !important;
-    width: inherit;
+    width: 100%;
+    position: fixed;
+    z-index: 600;
+    height: inherit;
+}
+
+.changenav {
+    height: 70px;
+    margin-bottom: 10px;
+    padding: unset !important;
 }
 
 .toright {
@@ -36,8 +45,7 @@ a.mosueorigin {
 /*body > header > a:any-link {
     cursor: default !important;
 }*/
-
-.tab {
+    .tab {
     margin-right: 3px;
 }
 
