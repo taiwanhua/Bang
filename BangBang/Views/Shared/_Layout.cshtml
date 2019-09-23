@@ -264,7 +264,7 @@
                     $('#betbtn').click(() => { if ("0" !== gls('gamestate')) { $("#betboxx").css("display", "none"); $('#ar').attr('value', 0).removeAttr('style').RangeSlider({ putaid: "select" }); } else { updatebetX(betXid, invalue); setnewerbet(); $("#betboxx").css("display", "none"); $('#ar').attr('value', 0).removeAttr('style').RangeSlider({ putaid: "select" }); if (havebet()) { gamestate0_openselect(); gamestate1_dealertalk(); closeplzbet(); localStorage.setItem("gamestate", 1); } } });
 
                     // $('#canclebetbtn').click(() => { $("body #betboxx").remove() });
-                    $('#canclebetbtn').click(() => { $("#betboxx").css("display", "none"); $('#ar').attr('value', 0).removeAttr('style').RangeSlider({ putaid: "select" });$('#betbtn').unbind('click');  });
+                    $('#canclebetbtn').click(() => { $("#betboxx").css("display", "none"); $('#ar').attr('value', 0).removeAttr('style').RangeSlider({ putaid: "select" }); $('#betbtn').unbind('click'); });
                 }
 
                 PData();
@@ -360,7 +360,7 @@
                 $(".innerrowthreecard").off('click');
                 let count = parseInt(gls("selectcardcount"));
                 if (0 == count) {
-                                                                                                                                                                                        /*gamestate0_cardoutcome(1)*/;
+                                                                                                                                                                                                                            /*gamestate0_cardoutcome(1)*/;
                     document.body.style.setProperty("--openplayerrankimgurl", "url(./img/suit2/" + gamestate0_cardoutcome(1) + ".png)")
                     $("#playerrankcard").addClass("cardopen");
                     localStorage.setItem("selectcardcount", 1)
@@ -594,7 +594,8 @@
                 gamestate2_comparecard();
                 document.body.style.setProperty("--opendealerrankimgurl", "url(./img/suit2/" + gls("drank") + ".png)")
                 document.body.style.setProperty("--opendealersuitimgurl", "url(./img/suit2/" + gls("dsuit") + ".jpg)")
-                $("body").append("<div id=\"billbox\" class=\"card\" style=\"background-color: rgb(29, 28, 28); width: 18rem;\"><div class=\"card-body\"><h5 class=\"card-title\" style=\" color: brown\">本局統計</h5><p class=\"card-text\" style=\" font-size: 8px; color: brown\">嘿嘿，輸錢不付就看是要剁哪一隻手指...</p></div><ul class=\"list-group list-group-flush\"><li id=\"bill1\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Small Both</li><li id=\"bill2\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Small Suit</li><li id=\"bill3\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Small Rank</li><li id=\"bill4\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Big Both</li><li id=\"bill5\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Big Suit</li><li id=\"bill6\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Big Rank</li></ul><div class=\"card-body\"><div id=\"showds\"></div><div id=\"showdr\"></div><button id=\"billclosebtn\"type=\"button\" class=\"btn btn-info\">清帳</button></div></div>");
+                //$("body").append("<div id=\"billbox\" class=\"card\" style=\"background-color: rgb(29, 28, 28); width: 18rem;\"><div class=\"card-body\"><h5 class=\"card-title\" style=\" color: brown\">本局統計</h5><p class=\"card-text\" style=\" font-size: 8px; color: brown\">嘿嘿，輸錢不付就看是要剁哪一隻手指...</p></div><ul class=\"list-group list-group-flush\"><li id=\"bill1\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Small Both</li><li id=\"bill2\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Small Suit</li><li id=\"bill3\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Small Rank</li><li id=\"bill4\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Big Both</li><li id=\"bill5\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Big Suit</li><li id=\"bill6\" style=\"background-color: rgb(36, 35, 35); \" class=\"list-group-item\">Big Rank</li></ul><div class=\"card-body\"><div id=\"showds\"></div><div id=\"showdr\"></div><button id=\"billclosebtn\"type=\"button\" class=\"btn btn-info\">清帳</button></div></div>");
+                $("#billbox").css("display", "block");
                 let billvalue1 = 0;
                 let billvalue2 = 0;
                 let billvalue3 = 0;
@@ -651,13 +652,18 @@
                 }
                 let tostoreinDB = billvalue1 + billvalue2 + billvalue3 + billvalue4 + billvalue5 + billvalue6;
                 /* 將輸贏金額加到清帳卡片上*/
-                $("#bill1").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue1 + "</div>")
-                $("#bill2").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue2 + "</div>")
-                $("#bill3").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue3 + "</div>")
-                $("#bill4").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue4 + "</div>")
-                $("#bill5").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue5 + "</div>")
-                $("#bill6").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue6 + "</div>")
-
+                //$("#bill1").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue1 + "</div>")
+                //$("#bill2").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue2 + "</div>")
+                //$("#bill3").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue3 + "</div>")
+                //$("#bill4").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue4 + "</div>")
+                //$("#bill5").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue5 + "</div>")
+                //$("#bill6").append("<div style=\"position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;\">" + billvalue6 + "</div>")
+                $("#bill1_c").text(billvalue1);
+                $("#bill2_c").text(billvalue2);
+                $("#bill3_c").text(billvalue3);
+                $("#bill4_c").text(billvalue4);
+                $("#bill5_c").text(billvalue5);
+                $("#bill6_c").text(billvalue6);
 
                 /*輸入資料庫參數*/
                 let param = new FormData();
@@ -810,7 +816,8 @@
 
                         $(".subinnerrowtwobetsmall").click(openbettextbox);//下注區(1-3)綁定按鈕事件
                         $(".subinnerrowtwobetbig").click(openbettextbox);//下注區(4-6)綁定按鈕事件
-                        $("#billbox").remove();
+                        //$("#billbox").remove();
+                        $("#billbox").css("display", "none");
                         //移除遊戲桌卡牌
                         $(".innerrowonecard").removeClass("cardclose");
                         $(".innerrowtwocard").removeClass("cardclose").removeClass("cardbeselected");
@@ -1059,7 +1066,8 @@
 
                 $(".subinnerrowtwobetsmall").click(openbettextbox);//下注區(1-3)綁定按鈕事件
                 $(".subinnerrowtwobetbig").click(openbettextbox);//下注區(4-6)綁定按鈕事件
-                $("#billbox").remove();
+                //$("#billbox").remove();
+                $("#billbox").css("display", "none");
                 //移除遊戲桌卡牌
                 $(".innerrowonecard").removeClass("cardclose");
                 $(".innerrowtwocard").removeClass("cardclose").removeClass("cardbeselected");
@@ -1257,6 +1265,47 @@
     <footer>
         <p style="text-align:center;">&copy; @DateTime.Now.Year - Bang! Bang! Bang! <font face="DFKai-sb">就叫你不要賭</font></p>
     </footer>
+    @* 開牌卡片 *@
+    <div id="billbox" class="card" style="background-color: rgb(29, 28, 28); width: 18rem; display:none;">
+        <div class="card-body">
+            <h5 class="card-title" style=" color: brown">本局統計</h5>
+            <p class="card-text" style=" font-size: 8px; color: brown">嘿嘿，輸錢不付就看是要剁哪一隻手指...</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li id="bill1" style="background-color: rgb(36, 35, 35); " class="list-group-item">
+                Small Both
+                <div id="bill1_c" style="position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;">" + billvalue1 + "</div>
+            </li>
+            <li id="bill2" style="background-color: rgb(36, 35, 35); " class="list-group-item">
+                Small Suit
+                <div id="bill2_c" style="position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;">" + billvalue2 + "</div>
+            </li>
+            <li id="bill3" style="background-color: rgb(36, 35, 35); " class="list-group-item">
+                Small Rank
+                <div id="bill3_c" style="position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;">" + billvalue3 + "</div>
+            </li>
+            <li id="bill4" style="background-color: rgb(36, 35, 35); " class="list-group-item">
+                Big Both
+                <div id="bill4_c" style="position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;">" + billvalue4 + "</div>
+            </li>
+            <li id="bill5" style="background-color: rgb(36, 35, 35); " class="list-group-item">
+                Big Suit
+                <div id="bill5_c" style="position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;">" + billvalue5 + "</div>
+            </li>
+            <li id="bill6" style="background-color: rgb(36, 35, 35); " class="list-group-item">
+                Big Rank
+                <div id="bill6_c" style="position:absolute;top: 12px;right: 60px;width: 300px;text-align: right;">" + billvalue6 + "</div>
+            </li>
+        </ul>
+        <div class="card-body">
+            <div id="showds">
+            </div>
+            <div id="showdr">
+            </div>
+            <button id="billclosebtn" type="button" class="btn btn-info">清帳</button>
+        </div>
+    </div>
+
     @* 下注卡片 *@
     <div id="betboxx" class="card text-white bg-dark mb-3" style="max-width: 18rem; display: none;">
         <div id="cardheadertext" class="card-header">請輸入 + $('#' + e.target.id).parent().text().trim() + "下注金額</div>
@@ -1272,6 +1321,7 @@
             <button id="canclebetbtn" type="button" class="btn btn-success">再想想</button><br>
         </div>
     </div>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
